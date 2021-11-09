@@ -1,0 +1,43 @@
+
+.img-profile{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    
+}
+
+.profile{
+    display: flex;
+
+}
+.name-user{
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+}
+
+.bio{
+    font-size: 0.9em;
+
+}
+
+.profile-img-container{
+    margin-right: 80px;
+}
+
+.profile-text-container{
+    margin-top: 30px;
+}
+
+.btn{
+    background-color: var(--color-main);
+    border: none;
+}
+
+.feed-photos{
+    margin-top: 20px;
+}
+
+.feed-cards{
+    padding-bottom: 25px;
+}
