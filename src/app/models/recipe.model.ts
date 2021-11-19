@@ -54,7 +54,7 @@ export interface Meal {
     dateModified?: any;
 }
 
-export interface Recipe {
+export interface Receita {
     meals: Meal[];
 }
 

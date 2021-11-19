@@ -1,6 +1,6 @@
 import { CrudService } from '../services/crud.service';
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../models/recipe.model';
+import { Receita } from '../models/recipe.model';
 
 @Component({
   selector: 'app-home',
@@ -9,24 +9,22 @@ import { Recipe } from '../models/recipe.model';
 })
 export class HomeComponent implements OnInit {
 
-  receita: Recipe;
+  receita: Receita;
   erro: any;
-
 
   constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
-    this.getter();
+    this.receberDados();
   }
 
-  getter(){
-    this.crudService.pegarReceita().subscribe((data: Recipe) => {
+  receberDados(){
+    this.crudService.pegarReceita().subscribe((data: Receita) => {
        this.receita = data;
        console.log(this.receita);
 
-
-    }, (error: any) => { 
-      this.erro = error;
+    }, (err: any) => { 
+      this.erro = err;
       console.log('Erro: ', this.erro)
     })
   } 
