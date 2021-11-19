@@ -1,4 +1,4 @@
-import { Receita } from './../models/recipe.model';
+import { Receita } from '../models/receita.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'

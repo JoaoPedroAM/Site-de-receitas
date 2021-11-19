@@ -1,6 +1,6 @@
 import { CrudService } from '../services/crud.service';
 import { Component, OnInit } from '@angular/core';
-import { Receita } from '../models/recipe.model';
+import { Receita } from '../models/receita.model';
 
 @Component({
   selector: 'app-home',
