@@ -6,8 +6,10 @@
             </div>
             <div class="card-body">
                 <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="O que está cozinhando hoje?" aria-label="default input example">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Deixe um comentário sobre a receita."></textarea>
+                    <input class="form-control" type="text" placeholder="O que está cozinhando hoje?"
+                        aria-label="default input example">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                        placeholder="Deixe um comentário sobre a receita."></textarea>
                     <input class="form-control" type="file" id="formFile">
                 </div>
                 <a href="#" class="btn btn-primary">Publicar</a>
@@ -15,44 +17,22 @@
         </div>
     </section>
     <section class="main-section-2">
-        <div class="card">
-            <div class="card-header title-card">
-                Lasanha à Bolonhesa
-            </div>
-            <img src="https://www.sabornamesa.com.br/media/k2/items/cache/13b5e0deaf19b06816d21e67ad4e211c_XL.jpg"
-                class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.<br><span class="tags">#Lasanha #Sabor #delicias #comida</span></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header title-card">
-                Lasanha à Bolonhesa
-            </div>
-            <img src="https://www.sabornamesa.com.br/media/k2/items/cache/13b5e0deaf19b06816d21e67ad4e211c_XL.jpg"
-                class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.<br><span class="tags">#Lasanha #Sabor #delicias #comida</span></p>
+        <div *ngIf="receita">
+            <div class="card" *ngFor="let i of receita.meals">
+                <div class="card-header title-card">{{ i.strMeal }}</div>
+                <img [attr.src]="i.strMealThumb" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 style="text-align: center; font-weight: bold;">Modo de Preparo</h4>
+                    <p class="card-text">{{ i.strInstructions }}</p>
+                    <h4 style="text-align: center; font-weight: bold;">Ingredientes</h4>
+                    <p class="card-text">{{ i.strIngredient1 }}</p> 
+                    <p class="tags">{{ i.strTags }}</p>
+
+                    <a href="#" class="btn btn-primary btn-center">Ver vídeo</a>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header title-card">
-                Lasanha à Bolonhesa
-            </div>
-            <img src="https://www.sabornamesa.com.br/media/k2/items/cache/13b5e0deaf19b06816d21e67ad4e211c_XL.jpg"
-                class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.<br><span class="tags">#Lasanha #Sabor #delicias #comida</span></p>
-            </div>
-        </div>
-        
-        
+
     </section>
 
 </main>
