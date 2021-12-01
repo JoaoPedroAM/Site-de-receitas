@@ -1,4 +1,4 @@
-<main class="main-div">
+<<main class="main-div">
     <section class="main-section-1">
         <div class="card">
             <div class="card-header">
@@ -17,22 +17,19 @@
         </div>
     </section>
     <section class="main-section-2">
-        <div *ngIf="receita">
-            <div class="card" *ngFor="let i of receita.meals">
-                <div class="card-header title-card">{{ i.strMeal }}</div>
-                <img [attr.src]="i.strMealThumb" class="card-img-top" alt="...">
+        <div *ngIf="recipes">
+            <div class="card" *ngFor="let i of recipes">
+                <div class="card-header title-card">{{ i.title }}</div>
+                <img [attr.src]="i.thumbnail" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h4 style="text-align: center; font-weight: bold;">Modo de Preparo</h4>
-                    <p class="card-text">{{ i.strInstructions }}</p>
-                    <h4 style="text-align: center; font-weight: bold;">Ingredientes</h4>
-                    <p class="card-text">{{ i.strIngredient1 }}</p> 
-                    <p class="tags">{{ i.strTags }}</p>
+                    <p class="card-text">{{ i.instructions }}</p>
+                    <h5 style="text-align: center; font-weight: bold;">tags</h5>
+                    <p class="card-text tags">{{ i.tags }}</p>
 
                     <a href="#" class="btn btn-primary btn-center">Ver vídeo</a>
                 </div>
             </div>
         </div>
-
     </section>
-
-</main>
+    </main>

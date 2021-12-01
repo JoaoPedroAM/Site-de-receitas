@@ -1,4 +1,4 @@
-import { Receita } from '../models/receita.model';
+import { RecipeAPI } from '../models/receita.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
@@ -10,8 +10,7 @@ export class CrudService {
 
   constructor(private http: HttpClient) { }
 
-  pegarReceita(): Observable<Receita>{
-    return this.http.get<Receita>(`https://www.themealdb.com/api/json/v1/1/search.php?f=a`);
+  getRecipe(): Observable<RecipeAPI>{
+    return this.http.get<RecipeAPI>(`https://www.themealdb.com/api/json/v1/1/search.php?f=a`);
   }
-
 }

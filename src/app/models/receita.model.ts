@@ -1,4 +1,4 @@
-export interface Meal {
+export interface MealAPI {
     idMeal: string;
     strMeal: string;
     strDrinkAlternate?: any;
@@ -54,9 +54,33 @@ export interface Meal {
     dateModified?: any;
 }
 
-export interface Receita {
+export interface RecipeAPI {
+    meals: MealAPI[];
+}
+
+export interface Recipe{
     meals: Meal[];
 }
 
+export interface Meal {
+    id: string;
+    title: string;
+    drinkAlternate?: any;
+    category: string;
+    area: string;
+    instructions: string;
+    thumbnail: string;
+    tags: string;
+    youtube: string;
+    ingredients: Ingredient[];
+    source: string;
+    imageSource?: any;
+    creativeCommonsConfirmed?: any;
+    dateModified?: any;
+}
 
-
+export interface Ingredient {
+    name: string;
+    quantity: number; // quatidade, ex: 150
+    unit: string; // tipo. ex: ml, g, kg
+}
