@@ -2,6 +2,7 @@ import { MealAPI, Meal } from './../models/receita.model';
 import { CrudService } from '../services/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { RecipeAPI } from '../models/receita.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,16 @@ export class HomeComponent implements OnInit {
 
   recipes: Meal[] = [];
   erro: any;
+  search = new FormControl('');
 
   constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
     this.getData();
+  }
+
+  sendMessage(){
+    this.getSearchData(this.search.value);
   }
 
   getData() {
@@ -32,6 +38,19 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getSearchData(search: string) {
+    this.crudService.getSearchRecipe(search).subscribe((data: RecipeAPI) => {
+      this.recipes = data.meals.map((recipeItem: MealAPI) => {
+        const recipe: Meal = this.parse(recipeItem);
+        console.log(recipe)
+        return recipe;
+      })
+    }, (err: any) => {
+      this.erro = err;
+      console.log('Error: ', this.erro);
+    })
+  }
+  
   parse(data: MealAPI): Meal {
     const keys = Object.keys(data);
     const values = Object.values(data);

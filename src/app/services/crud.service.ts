@@ -11,6 +11,12 @@ export class CrudService {
   constructor(private http: HttpClient) { }
 
   getRecipe(): Observable<RecipeAPI>{
-    return this.http.get<RecipeAPI>(`https://www.themealdb.com/api/json/v1/1/search.php?f=a`);
+    return this.http.get<RecipeAPI>(`https://www.themealdb.com/api/json/v1/1/search.php?f=n`);
   }
+
+  getSearchRecipe(search: string): Observable<RecipeAPI>{
+    return this.http.get<RecipeAPI>(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
+  }
+
+
 }
