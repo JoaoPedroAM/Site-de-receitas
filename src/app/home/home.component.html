@@ -1,38 +1,25 @@
 <main class="main-div">
-    <section class="main-section-1">
-        <div class="card">
-            <div class="card-header">
-                Fazer publicação
+
+    <div class="title-block">
+        <h1 id="title-page">Find meals by your ingredient</h1>
+        <p id="frase">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>-Thomas Keller</p>
+    </div>
+
+
+    <section class="search-section">
+            <div class="search-block">
+                    <input id="search-input" type="text" [formControl]="search" class="form-control" placeholder="Ex: chicken, banana, meat...">
+                    <button (click)="sendMessage()" class="btn btn-primary">Search</button>
             </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <input class="form-control" type="text" placeholder="O que está cozinhando hoje?"
-                        aria-label="default input example">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                        placeholder="Deixe um comentário sobre a receita."></textarea>
-                    <input class="form-control" type="file" id="formFile">
-                </div>
-                <a href="#" class="btn btn-primary">Publicar</a>
-            </div>
-        </div>
     </section>
-    <section class="main-section-2">
-        <div *ngIf="receita">
-            <div class="card" *ngFor="let i of receita.meals">
-                <div class="card-header title-card">{{ i.strMeal }}</div>
-                <img [attr.src]="i.strMealThumb" class="card-img-top" alt="...">
+    <section class="recipe-section" *ngIf="recipes">
+            <div class="card card-style" *ngFor="let i of recipes">
+                <img [attr.src]="i.thumbnail" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h4 style="text-align: center; font-weight: bold;">Modo de Preparo</h4>
-                    <p class="card-text">{{ i.strInstructions }}</p>
-                    <h4 style="text-align: center; font-weight: bold;">Ingredientes</h4>
-                    <p class="card-text">{{ i.strIngredient1 }}</p> 
-                    <p class="tags">{{ i.strTags }}</p>
-
-                    <a href="#" class="btn btn-primary btn-center">Ver vídeo</a>
+                    <h4 style="text-align: center; font-weight: bold;">{{ i.title }}</h4>
+                    <p class="card-text">{{ i.instructions }}</p>
+                    <a href="#" class="btn btn-primary">Ver vídeo</a>
                 </div>
             </div>
-        </div>
-
     </section>
-
 </main>
