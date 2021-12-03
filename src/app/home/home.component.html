@@ -3,20 +3,23 @@
         <h1 id="title-page">Find meals by your ingredient</h1>
         <p id="frase">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>-Thomas Keller</p>
     </div>
+
+    <!--
     <section class="search-section">
-            <div class="search-block">
+            <form class="search-block">
                     <input id="search-input" type="text" [formControl]="search" class="form-control" placeholder="Ex: chicken, banana, meat...">
                     <button (click)="sendMessage()" class="btn btn-primary">Search</button>
-            </div>
+            </form>
     </section>
     <section class="recipe-section" *ngIf="recipes">
-            <div class="card card-style" *ngFor="let i of recipes">
-                <img [attr.src]="i.thumbnail" class="card-img-top" alt="...">
+            <div class="card card-style" *ngFor="let recipe of recipes">
+                <img [attr.src]="recipe.thumbnail" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h4 style="text-align: center; font-weight: bold;">{{ i.title }}</h4>
-                    <p class="card-text">{{ i.instructions }}</p>
-                    <a href="#" class="btn btn-primary">Ver vídeo</a>
+                    <h4 style="text-align: center; font-weight: bold;">{{ recipe.title }}</h4>
+                    <p class="card-text">{{ recipe.instructions }}</p>
+                    <a href="#" class="btn btn-primary">Ver mais</a>
                 </div>
             </div>
     </section>
+    -->
 </main>
