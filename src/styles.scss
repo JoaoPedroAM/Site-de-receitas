@@ -1,6 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap');
 
 :root {
     --color-main:#ff6f00 ;
@@ -9,4 +8,8 @@
     --color-bg-navbar :#F8F9FA ;
     --color-letters: #181819;
     --color-letters-disable: #4A4A4B;
-  }
+}
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
