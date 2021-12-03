@@ -1,35 +1,24 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar navbar-expand-sm">
   <div class="container">
     <a href="/app-home" class="navbar-brand mb-0 h1">
-      <img
-        class="d-inline-block align-top"
-        src="https://cdn-icons-png.flaticon.com/512/45/45582.png"
-        width="30"
-        height="30"
-      />
-      Easy Recipe
+      <img class="d-inline-block align-top" src="https://cdn-icons-png.flaticon.com/512/45/45582.png" width="30"
+        height="30" />
+      MyRecipe
     </a>
-    <button
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      class="navbar-toggler"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav" >
+      <ul class="navbar-nav nav-items">
         <li class="nav-item active">
-          <a routerLink="/app-home" class="nav-link active">Home</a>
+          <a routerLink="/app-home" class="nav-link nav-text">Home</a>
         </li>
         <li class="nav-item active">
-          <a routerLink="/app-receitas" class="nav-link disable">Recipes</a>
+          <a routerLink="/app-receitas" class="nav-link nav-text">Recipes</a>
         </li>
         <li class="nav-item active">
-          <a routerLink="/app-perfil" class="nav-link disable">Profile</a>
+          <a routerLink="/app-perfil" class="nav-link nav-text">Profile</a>
         </li>
       </ul>
     </div>
@@ -38,4 +27,3 @@
 <div id="body-inicial">
   <router-outlet></router-outlet>
 </div>
-

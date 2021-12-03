@@ -1,4 +1,38 @@
+*{
+    
+}
+
 #body-inicial{
     width: 70%;
     margin: 20px auto;
 }
+
+.navbar{
+    background-color: var(--color-main);
+}
+
+.nav-items{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.nav-text{
+    color: white !important;
+}
+
+.nav-text:hover{
+    opacity: .9;
+}
+
+.navbar-brand{
+    color: black;
+    text-transform: lowercase;
+    padding: 15px 0;
+    font-size: 1.6em;
+}
+
+.navbar-brand:hover{
+    opacity: .8;
+}
+
