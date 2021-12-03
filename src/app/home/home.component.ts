@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
     this.crudService.getSearchRecipe(search).subscribe((data: RecipeAPI) => {
       this.recipes = data.meals.map((recipeItem: MealAPI) => {
         const recipe: Meal = this.parse(recipeItem);
-        console.log(recipe)
         return recipe;
       })
     }, (err: any) => {
