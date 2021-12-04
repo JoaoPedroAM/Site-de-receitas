@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,  } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-receitas',
   templateUrl: './receitas.component.html',
   styleUrls: ['./receitas.component.scss']
 })
-export class ReceitasComponent implements OnInit {
+export class ReceitasComponent {
 
-  constructor() { }
+  @Input() title = '';
+  @Input() instructions = '';
+  @Input() linkVideo = '';
 
-  ngOnInit(): void {
-  }
+  constructor(public activeModal: NgbActiveModal) {}
 
 }

@@ -1,8 +1,10 @@
+import { ReceitasComponent } from './../receitas/receitas.component';
 import { MealAPI, Meal } from './../models/receita.model';
 import { CrudService } from '../services/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { RecipeAPI } from '../models/receita.model';
 import { FormControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,7 @@ export class HomeComponent implements OnInit {
   erro: any;
   search = new FormControl('');
 
-  constructor(private crudService: CrudService) { }
+  constructor(private crudService: CrudService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getData();
@@ -88,6 +90,13 @@ export class HomeComponent implements OnInit {
       ingredients.push(ingredient);
     }
     return ingredients;
+  }
+
+  open(recipe: Meal) {
+    const modalRef = this.modalService.open(ReceitasComponent, { size: 'lg' });
+    modalRef.componentInstance.title = recipe.title;
+    modalRef.componentInstance.instructions = recipe.instructions;
+    modalRef.componentInstance.linkVideo = recipe.youtube;
   }
 
 }
