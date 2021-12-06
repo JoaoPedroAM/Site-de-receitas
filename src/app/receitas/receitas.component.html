@@ -1,9 +1,7 @@
 <div class="main">
     <div class="modal-header">
         <h4 class="modal-title">{{ title }}</h4>
-        <a type="button" class="close-btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">×</span>
-        </a>
+        <button class="close-btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">×</button>
     </div>
     <div class="modal-body">
         <p>{{ instructions }}</p>
