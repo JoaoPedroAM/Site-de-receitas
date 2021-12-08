@@ -1,1 +1,10 @@
-<p>receitas works!</p>
+<div class="main">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ title }}</h4>
+        <button class="close-btn" aria-label="Close" (click)="activeModal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+        <p>{{ instructions }}</p>
+        <a type="button" class="btn-style" [attr.href]="linkVideo" target="_blank">Watch video</a>
+    </div>
+</div>

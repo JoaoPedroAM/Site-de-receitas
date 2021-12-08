@@ -8,6 +8,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ReceitasComponent } from './receitas/receitas.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -22,9 +23,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule, 
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [HttpClient],
+  providers: [
+    HttpClient,
+    NgbActiveModal, 
+    NgbModal
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
