@@ -2,13 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap');
 
 :root {
-    --color-main:#ff6f00 ;
-    --color-main-lighter :#ffa040;
-    --color-main-darker :#c43e00 ;
+    --color-main:#212121 ;
+    --color-main-lighter :#484848;
+    --color-main-darker :#000000 ;
     --color-bg-navbar :#F8F9FA ;
     --color-letters: #181819;
-    --color-letters-disable: #4A4A4B;
-}
+    --color-letters-disable: rgb(141, 141, 141);
+    --color-secondary : #bf360c;
+    --color-secondary-lighter : #f9683a;
+    --color-secondary-darker : #870000;
+  }
 
 *{
   font-family: 'Poppins', sans-serif;

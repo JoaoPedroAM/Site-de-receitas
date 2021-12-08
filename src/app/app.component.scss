@@ -1,6 +1,6 @@
 #body-inicial{
     width: 70%;
-    margin: 20px auto;
+    margin: 100px auto;
 }
 
 .navbar{
@@ -13,22 +13,49 @@
     justify-content: flex-end;
 }
 
+.nav-link{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .nav-text{
     color: white !important;
+    border-bottom: var(--color-main) solid 2px;
 }
 
 .nav-text:hover{
-    opacity: .9;
+    border-bottom: white solid 2px;
 }
 
 .navbar-brand{
-    color: black;
-    text-transform: lowercase;
+    color: white;
     padding: 15px 0;
     font-size: 1.6em;
 }
 
-.navbar-brand:hover{
-    opacity: .8;
+.footer-container{
+    background-color: rgb(49, 49, 49);
+    color: white;
+    padding: 40px 0;
 }
 
+footer a{
+    text-decoration: none;
+}
+
+footer a:hover{
+    text-decoration: underline;
+}
+
+.brand{
+    margin-right: 5px;
+    color: var(--color-secondary) !important;
+}
+
+.title-footer{
+    text-transform: capitalize !important;
+}
+
+.icon{
+    margin-right: 10px;
+}
