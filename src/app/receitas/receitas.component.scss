@@ -6,8 +6,8 @@
 }
 
 .close-btn{
-    background-color: var(--color-main);
-    border: 1px solid var(--color-main);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
     text-decoration: none;
     border-radius: 30px;
     padding: 0px 10px;
@@ -17,15 +17,9 @@
 
 }
 
-.close-btn:hover{
-    background-color: var(--color-main-lighter);
-    border: 1px solid var(--color-main-lighter);
-}
-
-
 .btn-style{
-    background-color: var(--color-main);
-    border: 1px solid var(--color-main);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
     text-transform: uppercase;
     border-radius: 30px;
     padding: 10px 30px;
@@ -35,7 +29,7 @@
     text-decoration: none;
 }
 
-.btn-style:hover{
-    background-color: var(--color-main-lighter);
-    border: 1px solid var(--color-main-lighter);
+.btn-style:hover, .close-btn:hover{
+    background-color: var(--color-secondary-darker);
+    border: 1px solid var(--color-secondary-darker);
 }
