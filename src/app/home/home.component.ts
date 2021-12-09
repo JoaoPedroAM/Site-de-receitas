@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeAPI } from '../models/receita.model';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +18,7 @@ export class HomeComponent implements OnInit {
   form = this.formBuilder.group({
     search: ''
   })
-
+  
   constructor(private crudService: CrudService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {

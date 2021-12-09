@@ -1,6 +1,23 @@
-#body-inicial{
-    width: 70%;
-    margin: 100px auto;
+@media (max-width: 767px) {
+    #body-inicial{
+        width: 100%;
+        margin: 50px auto;
+    }
+}
+
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    #body-inicial{
+        width: 90%;
+        margin: 100px auto;
+    }
+}
+
+@media (min-width: 1025px){
+    #body-inicial{
+        width: 70%;
+        margin: 100px auto;
+    }
 }
 
 .navbar{
@@ -11,6 +28,10 @@
     display: flex !important;
     flex-direction: row;
     justify-content: flex-end;
+}
+
+.navbar-toggler, .navbar-toggler-icon{
+    color: white;
 }
 
 .nav-link{
@@ -50,6 +71,7 @@ footer a:hover{
 .brand{
     margin-right: 5px;
     color: var(--color-secondary) !important;
+  
 }
 
 .title-footer{
