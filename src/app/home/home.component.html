@@ -4,12 +4,10 @@
         <p id="subtitle">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>-Thomas Keller</p>
     </div>
     <section class="search-section">
-        <form class="search-block" [formGroup]="form" (ngSubmit)="onSubmit()">
-            <input id="search-input" class="form-control" type="text"  formControlName="search" placeholder="Ex: chicken, banana, meat...">
+            <input id="search-input" class="form-control" type="text"  [formControl]="search" placeholder="Ex: chicken, banana, meat...">
             <button type="submit" class="btn btn-primary">Search</button>
-        </form>
     </section>
-    <section class="recipe-section" *ngIf="recipes; else noData">
+    <section class="recipe-section" *ngIf="recipes | async; else noData">
         <div class="card card-style" *ngFor="let recipe of recipes">
             <img [attr.src]="recipe.thumbnail" class="card-img-top" alt="...">
             <div class="card-body">
@@ -20,7 +18,8 @@
         </div>
     </section>
     <ng-template #noData>
-        <h2>Has no recipe.</h2>
+        <h2 class="card-text">No data founded.</h2>
     </ng-template>
+
 
 </main>

@@ -1,4 +1,7 @@
+export interface RecipeAPI extends Array<MealAPI>{}
+
 export interface MealAPI {
+    [x: string]: any;
     idMeal: string;
     strMeal: string;
     strDrinkAlternate?: any;
@@ -55,7 +58,7 @@ export interface MealAPI {
 }
 
 export interface RecipeAPI {
-    meals: MealAPI[];
+    meals: MealAPI;
 }
 
 export interface Recipe{
