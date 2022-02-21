@@ -1,6 +1,6 @@
 <main class="main-div">
     <div class="title-block">
-        <h1 id="title-page">Find meals by your ingredient</h1>
+        <h1 id="title-page">Find meals by name</h1>
         <p id="subtitle">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>-Thomas Keller</p>
     </div>
     <section class="search-section">
@@ -9,7 +9,7 @@
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </section>
-    <section class="recipe-section" *ngIf="recipes">
+    <section class="recipe-section" *ngIf="recipes; else noData">
         <div class="card card-style" *ngFor="let recipe of recipes">
             <img [attr.src]="recipe.thumbnail" class="card-img-top" alt="...">
             <div class="card-body">
@@ -19,5 +19,8 @@
             </div>
         </div>
     </section>
+    <ng-template #noData>
+        <h2>Has no recipe.</h2>
+    </ng-template>
 
 </main>
