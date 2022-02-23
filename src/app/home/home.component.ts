@@ -1,186 +1,50 @@
-import { Observable } from 'rxjs';
 import { ReceitasComponent } from './../receitas/receitas.component';
-import { MealAPI, Meal } from './../models/receita.model';
+import { Meal } from './../models/receita.model';
 import { CrudService } from '../services/crud.service';
-import { Component, OnInit } from '@angular/core';
-import { RecipeAPI } from '../models/receita.model';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { map, tap } from 'rxjs/operators';
+import { merge } from 'rxjs'
+import {  debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent {
+export class HomeComponent{
 
-  //recipes: Meal[] = [];
-  //recipes: any;
   erro: any;
-  search = new FormControl;
+  search = new FormControl();
   form = this.formBuilder.group({
     search: ''
   })
-
+  
   constructor(private crudService: CrudService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
 
-
-  filterData = this.search.valueChanges.pipe(
+  getData = this.crudService.getSearchRecipe().pipe(
     tap(console.log)
-  )
+  );
+ 
+  inputFilter = this.search.valueChanges.pipe(
+    debounceTime(1000),
+    filter(
+      (valorDigitado) => valorDigitado.length >= 3 || !valorDigitado.length
+    ),
+    distinctUntilChanged(),
+    switchMap((valorDigitado) => this.crudService.getSearchRecipe(valorDigitado).pipe(
+      tap(console.log)
+    ))
+  );
+  
+  recipes = merge(this.getData, this.inputFilter);
 
-  recipes = this.crudService.getRecipe().pipe(
-    map((recipe: RecipeAPI) => {
-      recipe.map((recipeItem: MealAPI) => {
-        const recipe: Meal = this.parse(recipeItem);
-        return recipe;
-      })
-    })
-  )
-
-
-
-  getData2() {
-    this.crudService.getRecipe().subscribe((data: RecipeAPI) => {
-      data.map((recipeItem: MealAPI) => {
-        const recipe: Meal = this.parse(recipeItem);
-        return recipe;
-      })
-    }, (err: any) => {
-      this.erro = err;
-      console.log('Error: ', this.erro);
-    })
-  }
-
-
-  onSubmit() {
-
-  }
-
-  open(recipe: Meal) {
+  open(recipe: Meal): void {
     const modalRef = this.modalService.open(ReceitasComponent, { size: 'lg' });
     modalRef.componentInstance.title = recipe.title;
     modalRef.componentInstance.instructions = recipe.instructions;
     modalRef.componentInstance.linkVideo = recipe.youtube;
   }
 
-  parse(data: MealAPI): Meal {
-    const keys = Object.keys(data);
-    const values = Object.values(data);
-    const ingredients = this.parseIngredients(data);
-    return {
-      id: values[keys.indexOf("idMeal")],
-      title: values[keys.indexOf("strMeal")],
-      drinkAlternate: values[keys.indexOf("strDrinkAlternate")],
-      category: values[keys.indexOf("strCategory")],
-      area: values[keys.indexOf("strArea")],
-      instructions: values[keys.indexOf("strInstructions")],
-      thumbnail: values[keys.indexOf("strMealThumb")],
-      tags: values[keys.indexOf("strTags")],
-      youtube: values[keys.indexOf("strYoutube")],
-      ingredients,
-      source: values[keys.indexOf("strSource")],
-      imageSource: values[keys.indexOf("strImageSource")],
-      creativeCommonsConfirmed: values[keys.indexOf("strCreativeCommonsConfirmed")],
-      dateModified: values[keys.indexOf("dateModified")],
-    };
-  }
-
-  parseIngredients(data: MealAPI) {
-    const ingredients = [];
-    const keys = Object.keys(data);
-    const values = Object.values(data);
-
-    for (let i = 0; i < 20; i++) {
-      const name = keys.indexOf("strIngredient" + (i + 1));
-      const quantity = keys.indexOf("strMeasure" + (i + 1));
-      const ingredient = {
-        name: values[name],
-        quantity: values[quantity],
-        unit: "g"
-      }
-      ingredients.push(ingredient);
-    }
-    return ingredients;
-  }
-
-  /*
-
-
-  ngOnInit(): void {
-    this.getData();
-  }
-
-  onSubmit(){
-    this.getSearchData(this.form.controls['search'].value);
-    this.form.reset();
-  }
-
-  getData() {
-    this.crudService.getRecipe().subscribe((data: RecipeAPI) => {
-      this.recipes = data.meals.map((recipeItem: MealAPI) => {
-        const recipe: Meal = this.parse(recipeItem);
-        return recipe;
-      })
-    }, (err: any) => {
-      this.erro = err;
-      console.log('Error: ', this.erro);
-    })
-  }
-
-  getSearchData(search: string) {
-    this.crudService.getSearchRecipe(search).subscribe((data: RecipeAPI) => {
-      this.recipes = data.meals.map((recipeItem: MealAPI) => {
-        const recipe: Meal = this.parse(recipeItem);
-        return recipe;
-      })
-    }, (err: any) => {
-      this.erro = err;
-      console.log('Error: ', this.erro);
-    })
-  }
-  
-  parse(data: MealAPI): Meal {
-    const keys = Object.keys(data);
-    const values = Object.values(data);
-    const ingredients = this.parseIngredients(data);
-    return {
-      id: values[keys.indexOf("idMeal")],
-      title: values[keys.indexOf("strMeal")],
-      drinkAlternate: values[keys.indexOf("strDrinkAlternate")],
-      category: values[keys.indexOf("strCategory")],
-      area: values[keys.indexOf("strArea")],
-      instructions: values[keys.indexOf("strInstructions")],
-      thumbnail: values[keys.indexOf("strMealThumb")],
-      tags: values[keys.indexOf("strTags")],
-      youtube: values[keys.indexOf("strYoutube")],
-      ingredients,
-      source: values[keys.indexOf("strSource")],
-      imageSource: values[keys.indexOf("strImageSource")],
-      creativeCommonsConfirmed: values[keys.indexOf("strCreativeCommonsConfirmed")],
-      dateModified: values[keys.indexOf("dateModified")],
-    };
-  }
-
-  parseIngredients(data: MealAPI) {
-    const ingredients = [];
-    const keys = Object.keys(data);
-    const values = Object.values(data);
-
-    for (let i = 0; i < 20; i++) {
-      const name = keys.indexOf("strIngredient" + (i + 1));
-      const quantity = keys.indexOf("strMeasure" + (i + 1));
-      const ingredient = {
-        name: values[name],
-        quantity: values[quantity],
-        unit: "g"
-      }
-      ingredients.push(ingredient);
-    }
-    return ingredients;
-  }
-
- 
-  */
 }
