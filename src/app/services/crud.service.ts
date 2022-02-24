@@ -1,7 +1,7 @@
 import { Meal, MealAPI, RecipeAPI } from '../models/receita.model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http'
-import { pluck, map, } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http'
+import { pluck, map, tap } from 'rxjs/operators';
 
 const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
@@ -13,17 +13,18 @@ export class CrudService {
   constructor(private http: HttpClient) { }
 
   getSearchRecipe(search?: string) {
-      return this.http.get<MealAPI>(`${URL}${search || ''}`)
+    console.log(search)
+    return this.http.get<MealAPI>(`${URL}${search || ''}`)
         .pipe(
+          tap(console.log),
           pluck('meals'),
           map((data: RecipeAPI) => {
             return data.map((recipeItem: MealAPI) => {
               const recipe: Meal = this.parse(recipeItem);
               return recipe;
             })
-          }, (err: any) => { 
+          }, (err: any) => {
             console.log('Error: ', err)
-
           }
           )
         )
