@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
+    const inputData = this.form.controls['search'].value;
     this.recipes = this.crudService.getSearchRecipe(this.form.controls['search'].value);
+    if(inputData !== null || inputData !== undefined) this.search = inputData;
     this.form.reset();
   }
 
