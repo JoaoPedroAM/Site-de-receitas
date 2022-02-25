@@ -1,9 +1,10 @@
 import { ReceitasComponent } from './../receitas/receitas.component';
-import { Meal } from './../models/receita.model';
+import { Meal, MealAPI } from './../models/receita.model';
 import { CrudService } from '../services/crud.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { merge, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,23 +12,31 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent{
+export class HomeComponent implements OnInit {
 
+  recipes: Observable<Meal[]>;
   erro: any;
   form = this.formBuilder.group({
     search: ''
   })
+  search: string;
 
-  constructor(private crudService: CrudService, private modalService: NgbModal, private formBuilder: FormBuilder) { }
+  constructor(
+    private crudService: CrudService,
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder
+  ) { }
 
-  onSubmit(){
-    this.crudService.getSearchRecipe(this.form.controls['search'].value).pipe()
+  ngOnInit(): void {
+    this.recipes = this.getData;
+  }
+
+  onSubmit() {
+    this.recipes = this.crudService.getSearchRecipe(this.form.controls['search'].value);
     this.form.reset();
   }
 
   getData = this.crudService.getSearchRecipe();
-
-  recipes = this.getData;
 
   open(recipe: Meal): void {
     const modalRef = this.modalService.open(ReceitasComponent, { size: 'lg' });

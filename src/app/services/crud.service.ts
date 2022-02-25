@@ -14,7 +14,8 @@ export class CrudService {
 
   getSearchRecipe(search?: string) {
     console.log(search)
-    return this.http.get<MealAPI>(`${URL}${search || ''}`)
+    const getUrl = `${URL}${search || ''}`;
+    return this.http.get<MealAPI>(getUrl)
         .pipe(
           tap(console.log),
           pluck('meals'),

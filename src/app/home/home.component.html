@@ -9,7 +9,7 @@
           <button type="submit" class="btn btn-primary">Search</button>
       </form>
   </section>
-  <section class="recipe-section" *ngIf="recipes | async as meals">
+  <section class="recipe-section" *ngIf="recipes | async as meals; else noResults">
       <div class="card card-style" *ngFor="let recipe of meals">
           <img [attr.src]="recipe.thumbnail" class="card-img-top" alt="...">
           <div class="card-body">
@@ -19,4 +19,9 @@
           </div>
       </div>
   </section>
+
+  <ng-template #noResults>
+      <h2>No results for "{{ search }}"</h2>
+  </ng-template>
+
 </main>
