@@ -1,23 +1,27 @@
 <main class="main-div">
-    <div class="title-block">
-        <h1 id="title-page">Find meals by your ingredient</h1>
-        <p id="subtitle">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>-Thomas Keller</p>
-    </div>
-    <section class="search-section">
-        <form class="search-block" [formGroup]="form" (ngSubmit)="onSubmit()">
-            <input id="search-input" class="form-control" type="text"  formControlName="search" placeholder="Ex: chicken, banana, meat...">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </section>
-    <section class="recipe-section" *ngIf="recipes">
-        <div class="card card-style" *ngFor="let recipe of recipes">
-            <img [attr.src]="recipe.thumbnail" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h4 style="text-align: center; font-weight: bold;">{{ recipe.title }}</h4>
-                <p class="card-text">{{ recipe.instructions }}</p>
-                <button class="btn btn-primary" (click)="open(recipe)">See more</button>
-            </div>
-        </div>
-    </section>
+  <div class="title-block">
+      <h1 id="title-page">Find meals by your ingredient</h1>
+      <p id="subtitle">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>-Thomas Keller</p>
+  </div>
+  <section class="search-section">
+      <form class="search-block" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input id="search-input" class="form-control" type="text"  formControlName="search" placeholder="Ex: chicken, banana, meat...">
+          <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+  </section>
+  <section class="recipe-section" *ngIf="recipes | async as meals; else noResults">
+      <div class="card card-style" *ngFor="let recipe of meals">
+          <img [attr.src]="recipe.thumbnail" class="card-img-top" alt="...">
+          <div class="card-body">
+              <h4 style="text-align: center; font-weight: bold;">{{ recipe.title }}</h4>
+              <p class="card-text">{{ recipe.instructions }}</p>
+              <button class="btn btn-primary" (click)="open(recipe)">See more</button>
+          </div>
+      </div>
+  </section>
+
+  <ng-template #noResults>
+      <h2>No results for "{{ search }}"</h2>
+  </ng-template>
 
 </main>
